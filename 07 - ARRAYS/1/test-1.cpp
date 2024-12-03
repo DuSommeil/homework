@@ -1,6 +1,4 @@
 #include <iostream>
-#include <stdlib.h>
-#include <time.h>
 
 bool isDecreasing(int array[], int n) 
 {
@@ -14,19 +12,33 @@ bool isDecreasing(int array[], int n)
     return true;
 }
 
-bool canBecomeDecreasingByRemovingOne(int array[], int n) 
+bool decreaseOne(int array[], int n) 
 {
     for (int i = 0; i < n; i++) 
     {
-        int prev = (i > 0) ? array[i - 1] : INT_MIN;
-        int next = (i < n - 1) ? array[i + 1] : INT_MAX;
+        // Определяем предыдущий и следующий элементы массива
+    int prev;
+    if (i > 0) {
+        prev = array[i - 1];
+    } else {
+        prev = INT_MIN;
+    }
+    
+    int next;
+    if (i < n - 1) 
+    {
+        next = array[i + 1];
+    } else {
+        next = INT_MAX;
+    }
 
         if (next < prev) 
         {
             continue;
         }
 
-        if (isDecreasing(array, i) && isDecreasing(array + i + 1, n - i - 1)) {
+        if (isDecreasing(array, i) && isDecreasing(array + i + 1, n - i - 1)) 
+        {
             return true;
         }
     }
@@ -35,22 +47,18 @@ bool canBecomeDecreasingByRemovingOne(int array[], int n)
 
 int main() 
 {
-    int n;
-    std::cout << "Введите размер массива: ";
-    std::cin >> n;
+    int array[] = {9, 8, 2, 6, 3};
+    int n = sizeof(array) / sizeof(array[0]);
 
-    srand(time(NULL));
-
-    int array[n];
-    std::cout << "Сгенерированный массив:\n";
+    std::cout << "Массив:\n";
     for (int i = 0; i < n; i++) 
     {
-        array[i] = rand() % 30 + 1;
         std::cout << array[i] << " ";
     }
     std::cout << "\n";
 
-    if (canBecomeDecreasingByRemovingOne(array, n)) {
+    if (decreaseOne(array, n)) 
+    {
         std::cout << "Можно удалить один элемент, чтобы массив стал убывающим.\n";
     } else {
         std::cout << "Нельзя удалить один элемент, чтобы массив стал убывающим.\n";
@@ -58,3 +66,4 @@ int main()
 
     return 0;
 }
+
