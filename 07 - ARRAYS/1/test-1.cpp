@@ -2,21 +2,27 @@
 #include <stdlib.h>
 #include <time.h>
 
-bool isDecreasing(int array[], int n) {
-    for (int i = 1; i < n; i++) {
-        if (array[i] >= array[i - 1]) {
+bool isDecreasing(int array[], int n) 
+{
+    for (int i = 1; i < n; i++) 
+    {
+        if (array[i] >= array[i - 1]) 
+        {
             return false;
         }
     }
     return true;
 }
 
-bool canBecomeDecreasingByRemovingOne(int array[], int n) {
-    for (int i = 0; i < n; i++) {
+bool canBecomeDecreasingByRemovingOne(int array[], int n) 
+{
+    for (int i = 0; i < n; i++) 
+    {
         int prev = (i > 0) ? array[i - 1] : INT_MIN;
         int next = (i < n - 1) ? array[i + 1] : INT_MAX;
 
-        if (next < prev) {
+        if (next < prev) 
+        {
             continue;
         }
 
@@ -27,7 +33,8 @@ bool canBecomeDecreasingByRemovingOne(int array[], int n) {
     return false;
 }
 
-int main() {
+int main() 
+{
     int n;
     std::cout << "Введите размер массива: ";
     std::cin >> n;
@@ -36,7 +43,8 @@ int main() {
 
     int array[n];
     std::cout << "Сгенерированный массив:\n";
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++) 
+    {
         array[i] = rand() % 30 + 1;
         std::cout << array[i] << " ";
     }
