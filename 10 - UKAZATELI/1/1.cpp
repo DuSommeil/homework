@@ -6,11 +6,13 @@
 #include <string>
 #include <stdlib.h>
 
-int main() {
+int main() 
+{
     // Динамическое выделение памяти для строки
     char* fullPath = (char*)malloc(256 * sizeof(char));
     
-    if (fullPath == NULL) {
+    if (fullPath == NULL) 
+    {
         printf("Ошибка выделения памяти\n");
         return 1;
     }
@@ -24,13 +26,15 @@ int main() {
 
     // Находим последний символ '/' или '\\' (для разных операционных систем)
     char* lastSlash = strrchr(fullPath, '/');
-    if (lastSlash == NULL) {
+    if (lastSlash == NULL) 
+    {
         lastSlash = strrchr(fullPath, '\\');
     }
 
     // Если '/' или '\\' не найден, значит путь не содержит каталогов
     char* fileName;
-    if (lastSlash != NULL) {
+    if (lastSlash != NULL) 
+    {
         fileName = lastSlash + 1; // Имя файла после последнего разделителя
     } else {
         fileName = fullPath; // Если нет разделителей, всё это путь к файлу
@@ -40,14 +44,15 @@ int main() {
     char* dotPos = strrchr(fileName, '.');
 
     // Если точка найдена, обрезаем имя файла до этой точки (удаляем расширение)
-    if (dotPos != NULL) {
+    if (dotPos != NULL) 
+    {
         *dotPos = '\0';
     }
 
     // Выводим имя файла без расширения
     printf("Имя файла без расширения: %s\n", fileName);
 
-    // Освобождаем память
+    // Освобождаем память.
     free(fullPath);
 
     return 0;

@@ -1,5 +1,6 @@
 #include <iostream>
 
+// Функция для проверки, является ли массив убывающим
 bool isDecreasing(int array[], int n) 
 {
     for (int i = 1; i < n; i++) 
@@ -12,42 +13,32 @@ bool isDecreasing(int array[], int n)
     return true;
 }
 
+// Функция для проверки возможности удаления одного элемента
 bool decreaseOne(int array[], int n) 
 {
+    // Пробуем удалить каждый элемент по очереди
     for (int i = 0; i < n; i++) 
     {
-        // Определяем предыдущий и следующий элементы массива
-    int prev;
-    if (i > 0) {
-        prev = array[i - 1];
-    } else {
-        prev = INT_MIN;
-    }
-    
-    int next;
-    if (i < n - 1) 
-    {
-        next = array[i + 1];
-    } else {
-        next = INT_MAX;
-    }
-
-        if (next < prev) 
+        // Создаем новый массив без элемента i
+        int newArray[n - 1];
+        for (int j = 0, k = 0; j < n; j++) 
         {
-            continue;
+            if (j == i) 
+            continue;  // Пропускаем элемент i
+            newArray[k++] = array[j];
         }
-
-        if (isDecreasing(array, i) && isDecreasing(array + i + 1, n - i - 1)) 
+        
+        // Проверяем, является ли новый массив убывающим
+        if (isDecreasing(newArray, n - 1)) 
         {
-            return true;
+            return true;  // Если нашли, что можно удалить один элемент и массив убывающий
         }
     }
-    return false;
+    return false;  // Если не нашли подходящего элемента
 }
 
-int main() 
-{
-    int array[] = {9, 8, 2, 6, 3};
+int main() {
+    int array[] = {9, 5, 2, 3, 1};
     int n = sizeof(array) / sizeof(array[0]);
 
     std::cout << "Массив:\n";
@@ -66,4 +57,3 @@ int main()
 
     return 0;
 }
-
