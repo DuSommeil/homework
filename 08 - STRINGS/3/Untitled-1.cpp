@@ -1,44 +1,37 @@
 #include <stdio.h>
 #include <string.h>
 
-#define size 1000
+#define SIZE 1000
 
-int main() 
-{
-    char line[size];  // строка для ввода
-    printf("Введите строку: ");
-    fgets(line, sizeof(line), stdin);
+int main() {
+    char input[SIZE]; // Исходная строка
+    char even_chars[SIZE]; // Четные символы
+    char odd_chars[SIZE]; // Нечетные символы
 
-
-    int length = strlen(line);  // длина строки
-
-    if (line[length - 1] == '\n') 
-    {
-        line[length - 1] = '\0';  // заменяем '\n' на конец строки, потому что fgets добавляет \n в конце строки, из-за чего в выводе четные и нечетные символы будут находиться на разных строках консоли
-        length--;  // уменьшаем длину строки
-    }
-
-    char even_line[size], odd_line[size];  // массивы для четных и нечетных позиций
     int even_index = 0, odd_index = 0;
 
-    for (int i = 0; i < length; i++) // разделяем символы на четные и нечетные позиции
-    {
-        if (i % 2 == 0) 
-        {
-            even_line[even_index++] = line[i]; // четные позиции
-        } 
-        else 
-        { 
-            odd_line[odd_index++] = line[i]; // нечетные позиции
+    // Ввод строки
+    printf("Введите строку: ");
+    fgets(input, SIZE, stdin);
+
+    // Убираем символ новой строки, если он есть
+    size_t length = strlen(input);
+    if (input[length - 1] == '\n') {
+        input[length - 1] = '\0'; // Удаляем символ новой строки
+        length--; // Обновляем длину строки
+    }
+
+    // Разделяем символы на чётные и нечётные позиции
+    for (size_t i = 0; i < length; i++) {
+        if (i % 2 == 0) {
+            even_chars[even_index++] = input[i]; // Чётные позиции
+        } else {
+            odd_chars[odd_index++] = input[i]; // Нечётные позиции
         }
     }
 
-    even_line[even_index] = '\0';  // завершаем строку для четных символов
-    odd_line[odd_index] = '\0';    // завершаем строку для нечетных символов
+    // Выводим результат: сначала чётные, затем нечетные в обратном порядке
+    printf("Зашифрованная строка: %s%s\n", even_chars, odd_chars);
 
-    // выводим результат: четные символы и нечетные символы
-    printf("Зашифрованная строка: %s", even_line);
-    printf("%s", odd_line);
-    
     return 0;
 }
