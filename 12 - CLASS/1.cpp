@@ -11,11 +11,11 @@ using namespace std;
 
 class ElectricMeter
 {
-// задаем поля класса
+// задаем поля (данные) класса
     int minValue;          
     int maxValue;          
     string unit;
-    int currentValue;      
+    int currentValue;
 
 public:
     // конструктор с параметрами

@@ -15,7 +15,9 @@ class Array
 
 public:
     // обычный конструктор
-    Array(int n):size(n), array(nullptr){}
+    Array(int n):size(n), array(nullptr){
+        
+    }
 
     // метод для проверки и корректировки размерности
     void validateSize() 
@@ -77,7 +79,7 @@ int main() {
     Array mas(5);
 
     // проверяем и изменяем размерность
-    mas.validateSize();
+    //3mas.validateSize();
 
     // вводим элементы массива
     mas.inputElements();

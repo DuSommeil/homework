@@ -18,6 +18,25 @@ public:
     //конструктор с параметром
     Square(double length):sideLength(length){}
 
+    void setLength(double length)
+    {
+        if (sideLength >= 0)
+        {
+            sideLength = length;
+        }
+        else
+        {
+            cout << "Длина стороны не может быть отрицательной" << endl;
+        }
+    }
+
+    // void setLength(double length)
+    // {
+    //     cout << "Введите длину стороны: ";
+    //     cin >> sideLength;
+    //     sideLength = length;
+    // }
+    
     //метод для вычисления диагонали квадртата
     double getDiag() const 
     {
