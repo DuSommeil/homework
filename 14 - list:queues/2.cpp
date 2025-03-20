@@ -24,6 +24,16 @@ private:
 public:
     doublelist(): head(nullptr) {}
 
+    ~doublelist() 
+    {
+        while (head) 
+        {
+            node* temp = head;
+            head = head->next;
+            delete temp;
+        }
+    }
+
     // добавление элемента в конец списка
     void add(T value) 
     {
@@ -49,6 +59,12 @@ public:
     // дублирование элементов с нечетными номерами
     void dupl_odd_nodes() 
     {
+        if (head == nullptr) 
+        {
+            cout << "список пуст. дублирование невозможно.\n";
+            return;
+        }
+
         node* current = head;
         int index = 1; // индекс текущего элемента (начинается с 1)
 
@@ -89,6 +105,12 @@ public:
     void print() const 
     {
         node* temp = head;
+        if (temp == nullptr) 
+        {
+            cout << "список пуст.\n";
+            return;
+        }
+
         cout << "\nсписок: ";
         while (temp != nullptr) 
         {
@@ -107,7 +129,7 @@ public:
         } 
         else 
         {
-            cout << "указатель на первый элемент списка: " << head << "\n";
+            cout << "указатель на первый элемент списка: " << head << ", значение: " << head->data << "\n";
         }
     }
 };

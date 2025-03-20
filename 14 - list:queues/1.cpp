@@ -24,6 +24,16 @@ private:
 public:
     queue_p1p2() : p1(nullptr), p2(nullptr) {}
 
+    ~queue_p1p2()
+    {
+        while (p1)
+        {
+            node* temp = p1;
+            p1 = p1->next;
+            delete temp;
+        }
+    }
+
     // добавление элемента в очередь
     void queue_add(T value)
     {
@@ -46,9 +56,15 @@ public:
         while (p1 && p1->data % 2 != 0)
         {
             node* temp = p1; // сохраняем текущий начальный элемент
-            cout << "Извлеченный элемент: " << temp->data << "\n"; // выводим его значение
+            cout << "Извлеченный элемент: " << temp->data << ", его адерс: " << temp << "\n"; // выводим его значение
             p1 = p1->next; // перемещаем начало очереди на следующий элемент
             delete temp; // освобождаем память
+        }
+
+        // обновляем p2, если очередь стала пустой
+        if (p1 == nullptr)
+        {
+            p2 = nullptr;
         }
 
         // вывод нового состояния очереди
@@ -58,16 +74,7 @@ public:
         }
         else
         {
-            cout << "Начало: " << p1->data << ", конец: ";
-            if (p2 != nullptr)
-            {
-                cout << p2->data; // выводим значение конечного элемента, если он существует
-            }
-            else
-            {
-                cout << -1; // иначе выводим -1 (этот случай не должен происходить при корректной работе)
-            }
-            cout << "\n";
+            cout << "\n\nНачало: " << p1->data << "\nАдрес в памяти: " << p1 << "\n\nКонец: " << p2->data << "\nАдрес в памяти: " << p2 << "\n";
         }
     }
 
@@ -81,13 +88,15 @@ public:
 int main()
 {
     queue_p1p2<int> q;
-    q.queue_add(4);
+    q.queue_add(9);
+    q.queue_add(11);
+    q.queue_add(2);
+    q.queue_add(7);
+    q.queue_add(3);
+    q.queue_add(3);
+    q.queue_add(7);
     q.queue_add(3);
     q.queue_add(6);
-    q.queue_add(7);
-    q.queue_add(8);
-    q.queue_add(2);
-    q.queue_add(3);
     q.queue_res();
 
     return 0;
