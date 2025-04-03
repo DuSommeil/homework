@@ -124,6 +124,24 @@ public:
     {
         return p1 == nullptr;
     }
+
+    bool get_element(T value)
+    {
+        node* current = p1;
+
+        while (current)
+        {
+            if (current->data == value)
+            {
+                cout << "элемент " << value << " найден в очереди" << endl;
+                return true;
+            }
+            current = current->next;
+            
+        }
+        cout << "элемент " << value << " не найден." << endl;
+        return false;
+    }
 };
 
 int main()
@@ -139,6 +157,8 @@ int main()
     q.queue_add(3);
     q.queue_add(6);
     q.queue_res();
+
+    q.get_element(12);
 
     return 0;
 }
